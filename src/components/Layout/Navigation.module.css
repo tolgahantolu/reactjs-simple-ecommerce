@@ -1,0 +1,50 @@
+.nav {
+  height: 6rem;
+  background-color: #c29f5e;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav a {
+  color: #1c1d1c;
+}
+
+.nav ul {
+  display: flex;
+}
+
+.nav li {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.nav li:not(:first-child) {
+  margin-left: 2rem;
+}
+
+.nav button {
+  font-size: 1.6rem;
+  background-color: #402e32;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  color: #fafaf9;
+  cursor: pointer;
+}
+
+.nav span {
+  background-color: #c29f5e;
+  padding: 0.5rem 1rem;
+  border-radius: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+.active {
+  border-bottom: 2px solid #402e32;
+}

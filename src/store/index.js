@@ -46,6 +46,25 @@ const cartSlice = createSlice({
         .map((product) => product.totalPrice)
         .reduce((acc, totalPriceProducts) => acc + totalPriceProducts, 0);
     },
+
+    removeItemFromCart(state, action) {
+      state.counter = state.counter - action.payload.counter;
+
+      const { id, price } = action.payload;
+
+      const existingProduct = state.products.find(
+        (product) => product.id === id
+      );
+      console.log(existingProduct);
+
+      existingProduct.quantity--;
+      existingProduct.totalPrice = existingProduct.totalPrice - price;
+
+      // calc total amount
+      state.totalAmount = state.products
+        .map((product) => product.totalPrice)
+        .reduce((acc, totalPriceProducts) => acc + totalPriceProducts, 0);
+    },
   },
 });
 

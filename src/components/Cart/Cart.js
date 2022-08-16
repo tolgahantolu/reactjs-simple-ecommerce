@@ -31,6 +31,16 @@ const Cart = (props) => {
     );
   };
 
+  const removeItemHandler = () => {
+    dispatch(
+      cartActions.removeItemFromCart({
+        id: productsData.id,
+        price: productsData.price,
+        counter: 1,
+      })
+    );
+  };
+
   return (
     <Modal onClose={props.onClose}>
       <div className={classes.cart}>
@@ -50,7 +60,7 @@ const Cart = (props) => {
                   </div>
                 </div>
                 <div className={classes["item-actions"]}>
-                  <button>-</button>
+                  <button onClick={removeItemHandler}>-</button>
                   <button onClick={addItemHandler}>+</button>
                 </div>
               </li>

@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux/es/exports";
+import { cartActions } from "../../../store";
 import Input from "../../UI/Input";
 
 import classes from "./ProductForm.module.css";
 
 const ProductForm = (props) => {
+  const dispatch = useDispatch();
   const [amountIsValid, setAmountIsValid] = useState(true);
   const amountInputRef = useRef();
 
@@ -21,6 +24,15 @@ const ProductForm = (props) => {
       setAmountIsValid(false);
       return;
     }
+
+    // ! <ProductItem>'dan gelen verileri burada reducer'a dispatch ediyoruz.
+    dispatch(
+      cartActions.addItemToCart({
+        ...props.onAddToCart,
+        counter: enteredAmountNumber,
+        amount: enteredAmountNumber,
+      })
+    );
   };
 
   return (
@@ -39,7 +51,7 @@ const ProductForm = (props) => {
       />
       <button>Add To Cart</button>
       {!amountIsValid && (
-        <p style={{ fontSize: "2rem", color: "#F2DF3A" }}>
+        <p style={{ fontSize: "2rem", fontWeight: "500", color: "darkred" }}>
           Please enter a amount (1-5).
         </p>
       )}

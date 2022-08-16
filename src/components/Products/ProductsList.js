@@ -7,6 +7,7 @@ const ProductsList = (props) => {
         return (
           <ProductItem
             key={product.id}
+            id={product.id}
             name={product.name}
             description={product.description}
             price={product.price}

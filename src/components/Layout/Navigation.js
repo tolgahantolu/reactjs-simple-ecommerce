@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Cart from "../Cart/Cart";
 import classes from "./Navigation.module.css";
 const Navigation = () => {
+  const cartCounter = useSelector((state) => state.cart.counter);
   const [cartIsShow, setCartIsShow] = useState(false);
 
   const showCartHandler = () => {
@@ -14,24 +17,26 @@ const Navigation = () => {
 
   return (
     <nav className={classes.nav}>
-      <a className={classes.logo}>ReactStore</a>
+      <NavLink to="/" className={classes.logo}>
+        ReactStore
+      </NavLink>
       <ul>
         <li>
-          <a>Products</a>
+          <NavLink to="/products">Products</NavLink>
         </li>
         <li>
-          <a>About</a>
+          <NavLink to="/about">About</NavLink>
         </li>
         <li>
-          <a>Contact</a>
+          <NavLink to="/contact">Contact</NavLink>
         </li>
         <li>
-          <a>Login</a>
+          <NavLink to="/login">Login</NavLink>
         </li>
       </ul>
       {cartIsShow && <Cart onClose={hideCartHandler} />}
       <button onClick={showCartHandler}>
-        Your Cart <span>0</span>
+        Your Cart <span> {cartCounter} </span>
       </button>
     </nav>
   );

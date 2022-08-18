@@ -11,21 +11,29 @@ const Cart = (props) => {
   const totalAmount = useSelector((state) => state.cart.totalAmount);
   console.log(productItems);
 
-  const [productsData] = productItems.map((singleProduct) => {
-    return {
-      id: singleProduct.id,
-      name: singleProduct.name,
-      price: singleProduct.price,
-    };
-  });
+  const productsData = productItems.map((products) => products);
   console.log(productsData);
+
+  let newSingleProductData;
+  const newProductData = () => {
+    for (const product of productsData) {
+      console.log(product);
+      newSingleProductData = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+      };
+    }
+  };
+  newProductData();
+  console.log(newSingleProductData);
 
   const addItemHandler = () => {
     dispatch(
       cartActions.addItemToCart({
-        id: productsData.id,
-        name: productsData.name,
-        price: productsData.price,
+        id: newSingleProductData.id,
+        name: newSingleProductData.name,
+        price: newSingleProductData.price,
         counter: 1,
       })
     );
@@ -34,8 +42,8 @@ const Cart = (props) => {
   const removeItemHandler = () => {
     dispatch(
       cartActions.removeItemFromCart({
-        id: productsData.id,
-        price: productsData.price,
+        id: newSingleProductData.id,
+        price: newSingleProductData.price,
         counter: 1,
       })
     );
